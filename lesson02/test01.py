@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 
 img = cv2.imread('lenna.jpg')
+print(img)
 cv2.imshow('lenna', img)
 key = cv2.waitKey()
 if key == 27:
@@ -24,6 +25,7 @@ if key == 27:
 # 2nd derivative: laplacian （双边缘效果）
 kernel_lap = np.array([[0, 1, 0], [1, -4, 1], [0, 1, 0]], np.float32)
 lap_img = cv2.filter2D(img, -1, kernel=kernel_lap)
+print(lap_img)
 cv2.imshow('lap_lenna', lap_img)
 key = cv2.waitKey()
 if key == 27:
