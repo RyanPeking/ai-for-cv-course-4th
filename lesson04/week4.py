@@ -5,6 +5,9 @@ import sklearn.linear_model
 # 生成数据集
 np.random.seed(0)
 X, y = sklearn.datasets.make_moons(200, noise=0.2)
+print('X为：{}'.format(X))
+
+
 
 num_examples = len(X)       # size of training set
 nn_input_dim = 2
@@ -30,6 +33,7 @@ def calculate_loss(model):
 
 def build_model(nn_hdim, num_passes=30000, print_loss=False):
     W1 = np.random.randn(nn_input_dim, nn_hdim) / np.sqrt(nn_input_dim)
+    print('W1为：{}'.format(W1))
     b1 = np.zeros((1, nn_hdim))
     W2 = np.random.randn(nn_hdim, nn_output_dim) / np.sqrt(nn_hdim)
     b2 = np.zeros((1, nn_output_dim))
@@ -43,7 +47,7 @@ def build_model(nn_hdim, num_passes=30000, print_loss=False):
         a1 = np.tanh(z1)
         z2 = a1.dot(W2) + b2
         exp_scores = np.exp(z2)
-        probs = exp_scores / np.sum(exp_scores, axis=1, keepdims=True)   # this is softmax
+        probs = exp_scores / np.sum(exp_scores, axis=1, keepdims=True)   # this is softmax  keepdims=True是保持维度
 
         # bp
         delta3 = probs
